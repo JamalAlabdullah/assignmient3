@@ -14,6 +14,10 @@ public class Franchise {
     @Column(name = "description", length = 100, nullable = false)
     private String description;
 
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
     // Relationship ont to many franchises/movie
     @OneToMany(mappedBy = "franchise")
     private Set<Movie> movies;

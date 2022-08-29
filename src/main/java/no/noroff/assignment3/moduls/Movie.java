@@ -20,9 +20,21 @@ public class Movie {
     @Column(name = "trailerL_ink", length = 100, nullable = false)
     private String trailerLink;
 
+    public Set<Character> getCharacters() {
+        return characters;
+    }
+
     //
     @ManyToMany
     private Set<Character> characters;
+
+    public Franchise getFranchise() {
+        return franchise;
+    }
+
+    public void setFranchise(Franchise franchise) {
+        this.franchise = franchise;
+    }
 
     // Relationship ont to many franchises/movie
     @ManyToOne
