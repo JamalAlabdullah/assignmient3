@@ -29,6 +29,7 @@ public class MovieServiceImpl implements MovieService {
         if (movieRepository.existsById(id)) {
             // Set relationships to null so we can delete without referential problems
             Movie movie = movieRepository.findById(id).get();
+            movie.getCharacters().forEach(s -> s.getMovies().remove(movie));
             movieRepository.delete(movie);
         } else
             logger.warning("No franchise exists with ID: " + id);

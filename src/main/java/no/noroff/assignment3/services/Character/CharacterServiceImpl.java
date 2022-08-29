@@ -26,6 +26,7 @@ public class CharacterServiceImpl implements CharacterService{
         if(characterRepository.existsById(id)) {
             // Set relationships to null so we can delete without referential problems
             Character character = characterRepository.findById(id).get();
+            character.getMovies().forEach(s -> s.getCharacters().remove(character));
             characterRepository.delete(character);
         }
         else

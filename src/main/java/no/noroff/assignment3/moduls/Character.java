@@ -18,6 +18,10 @@ public class Character {
     @Column(name = "picture_url", length = 100, nullable = false)
     private String pictureUrl;
 
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
     // Relationship/ many To many
     @ManyToMany(mappedBy = "characters")
     private Set<Movie> movies;
