@@ -5,12 +5,12 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Movies {
+public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movieId;
-    @Column(name = "movi_Title", length = 100, nullable = false)
-    private String moviTitle;
+    @Column(name = "movie_Title", length = 100, nullable = false)
+    private String movieTitle;
     @Column(name = "genre", length = 100, nullable = false)
     private String genre;
     @Column(name = "director", length = 100, nullable = false)
@@ -22,17 +22,12 @@ public class Movies {
 
     //
     @ManyToMany
-    private Set<Characters> characters;
+    private Set<Character> characters;
 
     // Relationship ont to many franchises/movie
     @ManyToOne
-    @JoinColumn(name = "franchises" )
-    private Franchises franchises;
+    @JoinColumn(name = "franchise" )
+    private Franchise franchise;
     // one to one movie/franchise
-    @OneToOne
-    @JoinColumn(name="franchiseId")
-    private Franchises franchisess;
-
-
 
 }

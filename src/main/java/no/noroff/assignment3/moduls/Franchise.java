@@ -5,23 +5,18 @@ import java.util.Set;
 
 
 @Entity
-public class Franchises {
+public class Franchise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int franchiseId;
-    @Column(name = "franchis_name", length = 100, nullable = false)
+    @Column(name = "franchise_name", length = 100, nullable = false)
     private String name;
     @Column(name = "description", length = 100, nullable = false)
     private String description;
 
     // Relationship ont to many franchises/movie
-    @OneToMany(mappedBy = "franchises")
-    private Set<Movies> movies;
-
-    // one to one movie/franchise
-    @OneToOne(mappedBy = "franchiseId")
-    private Movies moviess;
-
+    @OneToMany(mappedBy = "franchise")
+    private Set<Movie> movies;
 
 
 }
