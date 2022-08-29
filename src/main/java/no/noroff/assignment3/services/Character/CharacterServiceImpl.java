@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.logging.Logger;
-
+import org.slf4j.Logger;
 @Service
 public class CharacterServiceImpl implements CharacterService{
 
-    private final Logger logger = (Logger) LoggerFactory.getLogger(CharacterServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(CharacterServiceImpl.class);
     private final CharacterRepository characterRepository;
 
     public CharacterServiceImpl(CharacterRepository characterRepository) {
@@ -30,7 +29,7 @@ public class CharacterServiceImpl implements CharacterService{
             characterRepository.delete(character);
         }
         else
-            logger.warning("No character exists with ID: " + id);
+            logger.warn("No character exists with ID: " + id);
     }
 
     @Override
