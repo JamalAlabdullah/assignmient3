@@ -40,7 +40,7 @@ public class Movie {
 
     // Relationship ont to many franchises/movie
     @ManyToOne
-    @JoinColumn(name = "franchise" )
+    @JoinColumn(name = "franchise_id" )
     private Franchise franchise;
     // one to one movie/franchise
     @JsonGetter("franchise")
