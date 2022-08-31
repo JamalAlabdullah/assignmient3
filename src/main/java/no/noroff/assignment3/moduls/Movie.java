@@ -1,10 +1,16 @@
 package no.noroff.assignment3.moduls;
 
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
+@Data
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +30,24 @@ public class Movie {
     @ManyToMany
     private Set<Character> characters;
 
+    @JsonGetter("characters")
+    public List<Integer> jsonGetCharacters() {
+        if(characters != null)
+            return characters.stream().map(s -> s.getCharacterId())
+                    .collect(Collectors.toList());
+        return null;
+    }
+
     // Relationship ont to many franchises/movie
     @ManyToOne
-    @JoinColumn(name = "franchise" )
+    @JoinColumn(name = "franchise_id" )
     private Franchise franchise;
     // one to one movie/franchise
+    @JsonGetter("franchise")
+    public Integer jsonGetFranchise() {
+        if(franchise != null)
+            return franchise.getFranchiseId();
+        return null;
+    }
 
 }

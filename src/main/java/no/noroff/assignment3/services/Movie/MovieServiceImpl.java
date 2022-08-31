@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
 
 @Service
 public class MovieServiceImpl implements MovieService {
 
-    private final Logger logger = (Logger) LoggerFactory.getLogger(no.noroff.assignment3.services.Movie.MovieServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(no.noroff.assignment3.services.Movie.MovieServiceImpl.class);
     private final MovieRepository movieRepository;
 
     public MovieServiceImpl(MovieRepository movieRepository) {
@@ -29,9 +29,10 @@ public class MovieServiceImpl implements MovieService {
         if (movieRepository.existsById(id)) {
             // Set relationships to null so we can delete without referential problems
             Movie movie = movieRepository.findById(id).get();
+            movie.getCharacters().forEach(s -> s.getMovies().remove(movie));
             movieRepository.delete(movie);
         } else
-            logger.warning("No franchise exists with ID: " + id);
+            logger.warn("No franchise exists with ID: " + id);
     }
 
     @Override
