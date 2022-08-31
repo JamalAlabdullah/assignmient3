@@ -57,7 +57,7 @@ public class MovieController {
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody Movie movie, @PathVariable int id) {
         // Validates if body is correct
-        if(id != movie.getMovieId())
+        if(id != movie.getId())
             return ResponseEntity.badRequest().build();
         movieService.update(movie);
         return ResponseEntity.noContent().build();

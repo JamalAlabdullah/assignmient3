@@ -13,4 +13,6 @@ public class CharacterDTO {
     private String gender;
     private String picture_url;
     private Set<Movie> movies;
+
+
 }

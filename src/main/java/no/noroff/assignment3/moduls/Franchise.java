@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class Franchise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int franchiseId;
+    private int id;
     @Column(name = "franchise_name", length = 100, nullable = false)
     private String name;
     @Column(name = "description", length = 100, nullable = false)
@@ -29,7 +29,7 @@ public class Franchise {
 
     @JsonGetter("movies")
     public List<Integer> jsonGetMovies() {
-        if(movies != null) return movies.stream().map(s -> s.getMovieId()).collect(Collectors.toList());
+        if(movies != null) return movies.stream().map(s -> s.getId()).collect(Collectors.toList());
         return null;
     }
 
