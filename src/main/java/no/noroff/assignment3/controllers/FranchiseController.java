@@ -1,8 +1,10 @@
 package no.noroff.assignment3.controllers;
 
+import no.noroff.assignment3.mappers.FranchiseMapper;
 import no.noroff.assignment3.moduls.Character;
 import no.noroff.assignment3.moduls.Franchise;
 import no.noroff.assignment3.moduls.Movie;
+import no.noroff.assignment3.moduls.dtos.FranchiseDTO;
 import no.noroff.assignment3.services.Franchise.FranchiseService;
 import no.noroff.assignment3.services.Movie.MovieService;
 import org.springframework.http.HttpStatus;
@@ -19,10 +21,12 @@ public class FranchiseController {
 
     private final FranchiseService franchiseService;
     private final MovieService movieService;
+    private  final FranchiseMapper franchiseMapper;
 
-    public FranchiseController(FranchiseService franchiseService, MovieService movieService) {
+    public FranchiseController(FranchiseService franchiseService, MovieService movieService, FranchiseMapper franchiseMapper) {
         this.franchiseService = franchiseService;
         this.movieService = movieService;
+        this.franchiseMapper = franchiseMapper;
     }
 
     @GetMapping
@@ -33,7 +37,8 @@ public class FranchiseController {
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
         Franchise franchise = franchiseService.findById(id);
-        return ResponseEntity.ok(franchise);
+        FranchiseDTO franchiseDTO= franchiseMapper.franchiseToFranchiseDTO(franchise);
+        return ResponseEntity.ok(franchiseDTO);
     }
 
     @PostMapping

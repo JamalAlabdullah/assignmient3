@@ -1,6 +1,8 @@
 package no.noroff.assignment3.controllers;
 
+import no.noroff.assignment3.mappers.MovieMapper;
 import no.noroff.assignment3.moduls.Movie;
+import no.noroff.assignment3.moduls.dtos.MovieDTO;
 import no.noroff.assignment3.services.Character.CharacterService;
 import no.noroff.assignment3.services.Movie.MovieService;
 import org.springframework.http.HttpStatus;
@@ -19,9 +21,12 @@ public class MovieController {
     private final MovieService movieService;
     private final CharacterService characterService;
 
-    public MovieController(MovieService movieService, CharacterService characterService) {
+    private final MovieMapper movieMapper;
+
+    public MovieController(MovieService movieService, CharacterService characterService, MovieMapper movieMapper) {
         this.movieService = movieService;
         this.characterService = characterService;
+        this.movieMapper = movieMapper;
     }
 
     @GetMapping
@@ -32,7 +37,8 @@ public class MovieController {
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
         Movie movie = movieService.findById(id);
-        return ResponseEntity.ok(movie);
+        MovieDTO movieDTO= movieMapper.movieToMovieDTO(movie);
+        return ResponseEntity.ok(movieDTO);
     }
 
 
