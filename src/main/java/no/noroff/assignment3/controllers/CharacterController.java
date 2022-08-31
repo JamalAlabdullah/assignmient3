@@ -15,11 +15,8 @@ import java.util.Collection;
 public class CharacterController {
 
     private final CharacterService characterService;
-    private final MovieService movieService;
-
-    public CharacterController(CharacterService characterService, MovieService movieService) {
+    public CharacterController(CharacterService characterService) {
         this.characterService = characterService;
-        this.movieService = movieService;
     }
 
     @GetMapping
@@ -29,8 +26,8 @@ public class CharacterController {
 
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
-        Movie movie = movieService.findById(id);
-        return ResponseEntity.ok(movie);
+        Character character = characterService.findById(id);
+        return ResponseEntity.ok(character);
     }
 
     @PostMapping
