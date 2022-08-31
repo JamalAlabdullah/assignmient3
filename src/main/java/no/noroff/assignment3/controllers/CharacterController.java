@@ -48,7 +48,7 @@ public class CharacterController {
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody Character character, @PathVariable int id) {
         // Validates if body is correct
-        if(id != character.getCharacterId())
+        if(id != character.getId())
             return ResponseEntity.badRequest().build();
         characterService.update(character);
         return ResponseEntity.noContent().build();

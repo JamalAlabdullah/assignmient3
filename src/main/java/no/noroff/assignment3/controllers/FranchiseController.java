@@ -56,7 +56,7 @@ public class FranchiseController {
     @PutMapping("{id}") // PUT: localhost:8080/api/v1/students/1
     public ResponseEntity update(@RequestBody Franchise franchise, @PathVariable int id) {
         // Validates if body is correct
-        if(id != franchise.getFranchiseId())
+        if(id != franchise.getId())
             return ResponseEntity.badRequest().build();
         franchiseService.update(franchise);
         return ResponseEntity.noContent().build();
