@@ -2,6 +2,8 @@ package no.noroff.assignment3.moduls;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,7 +12,8 @@ import java.util.stream.Collectors;
 
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Franchise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
