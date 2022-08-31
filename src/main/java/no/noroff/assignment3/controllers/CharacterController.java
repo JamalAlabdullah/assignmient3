@@ -15,7 +15,6 @@ import java.util.Collection;
 public class CharacterController {
 
     private final CharacterService characterService;
-
     public CharacterController(CharacterService characterService) {
         this.characterService = characterService;
     }
@@ -25,9 +24,32 @@ public class CharacterController {
         return ResponseEntity.ok(characterService.findAll());
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity getById(@PathVariable int id) {
+        Character character = characterService.findById(id);
+        return ResponseEntity.ok(character);
+    }
+
     @PostMapping
     public ResponseEntity add(@RequestBody Character character) {
         characterService.add(character);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity delete(@PathVariable int id) {
+        characterService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody Character character, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != character.getCharacterId())
+            return ResponseEntity.badRequest().build();
+        characterService.update(character);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
