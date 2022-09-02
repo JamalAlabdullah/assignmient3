@@ -4,7 +4,7 @@ variables:
   CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
   HEROKU_APP: acc-fake-prod
-
+ 
 docker-build:
   # Use the official docker image.
   image: docker:latest
