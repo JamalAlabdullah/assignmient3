@@ -9,3 +9,10 @@ INSERT INTO movie VALUES (3, 'Thomas Cameraman', 'Drama', 'Dramamovie', '','',3)
 INSERT INTO character VALUES (1, 'Tom Cruise', 'Actionman', 'Male', '');
 INSERT INTO character VALUES (2, 'Angelina Jolie', 'Tomb Raider', 'Female', '');
 INSERT INTO character VALUES (3, 'Leonardo Di Caprio', 'Jack', 'Male', '');
+
+
+--for heroku test
+
+INSERT INTO character VALUES (8, 'JAMAL', 'JAMAL1', 'Male', '');
+INSERT INTO character VALUES (9, 'JAMAL', 'JAMAL1', 'Male', '');
+INSERT INTO character VALUES (6, 'JAMAL', 'JAMAL1', 'Male', '');
